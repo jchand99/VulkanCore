@@ -20,15 +20,15 @@ namespace VulkanCore.Ext
     /// </summary>
     public unsafe class DebugUtilsMessengerExt : DisposableHandle<long>
     {
-        internal DebugUtilsMessengerExt(Instance parent, DebugUtilsMessengerCreateInfoExt* createInfo, ref AllocationCallbacks? allocator)
+        internal DebugUtilsMessengerExt(Instance parent, DebugUtilsMessengerCreateInfoExt * createInfo, ref AllocationCallbacks? allocator)
         {
             Parent = parent;
             Allocator = allocator;
 
-            createInfo->Prepare();
+            createInfo - > Prepare();
 
             long handle;
-            Result result = vkCreateDebugUtilsMessengerEXT(parent)(parent, createInfo, NativeAllocator, &handle);
+            Result result = vkCreateDebugUtilsMessengerEXT(parent) (parent, createInfo, NativeAllocator, & handle);
             VulkanException.ThrowForInvalidResult(result);
             Handle = handle;
         }
@@ -43,14 +43,14 @@ namespace VulkanCore.Ext
         /// </summary>
         public override void Dispose()
         {
-            if (!Disposed) vkDestroyDebugUtilsMessengerEXT(Parent)(Parent, this, NativeAllocator);
+            if (!Disposed) vkDestroyDebugUtilsMessengerEXT(Parent) (Parent, this, NativeAllocator);
             base.Dispose();
         }
 
-        private delegate Result vkCreateDebugUtilsMessengerEXTDelegate(IntPtr instance, DebugUtilsMessengerCreateInfoExt* createInfo, AllocationCallbacks.Native* allocator, long* messenger);
+        private delegate Result vkCreateDebugUtilsMessengerEXTDelegate(IntPtr instance, DebugUtilsMessengerCreateInfoExt * createInfo, AllocationCallbacks.Native * allocator, long * messenger);
         private static vkCreateDebugUtilsMessengerEXTDelegate vkCreateDebugUtilsMessengerEXT(Instance instance) => instance.GetProc<vkCreateDebugUtilsMessengerEXTDelegate>(nameof(vkCreateDebugUtilsMessengerEXT));
 
-        private delegate IntPtr vkDestroyDebugUtilsMessengerEXTDelegate(IntPtr instance, long messenger, AllocationCallbacks.Native* allocator);
+        private delegate IntPtr vkDestroyDebugUtilsMessengerEXTDelegate(IntPtr instance, long messenger, AllocationCallbacks.Native * allocator);
         private static vkDestroyDebugUtilsMessengerEXTDelegate vkDestroyDebugUtilsMessengerEXT(Instance instance) => instance.GetProc<vkDestroyDebugUtilsMessengerEXTDelegate>(nameof(vkDestroyDebugUtilsMessengerEXT));
     }
 
@@ -75,7 +75,7 @@ namespace VulkanCore.Ext
         /// <summary>
         /// Specifies which severity of event(s) will cause this callback to be called.
         /// </summary>
-        public DebugUtilsMessageTypesExt MessageSeverity;
+        public DebugUtilsMessageSeveritiesExt MessageSeverity;
         /// <summary>
         /// Specifies which type of event(s) will cause this callback to be called.
         /// </summary>
