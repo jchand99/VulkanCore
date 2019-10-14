@@ -25,7 +25,7 @@ namespace VulkanCore.Ext
             Parent = parent;
             Allocator = allocator;
 
-            createInfo - > Prepare();
+            createInfo -> Prepare();
 
             long handle;
             Result result = vkCreateDebugUtilsMessengerEXT(parent) (parent, createInfo, NativeAllocator, & handle);
