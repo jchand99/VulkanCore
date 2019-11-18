@@ -78,6 +78,9 @@ namespace VulkanCore.Khr
         /// <summary>
         /// Retrieve the index of the next available presentable image.
         /// </summary>
+        /// <param name="imageIndex">
+        /// Gets the index of the next image
+        /// </param>
         /// <param name="timeout">
         /// Indicates how long the function waits, in nanoseconds, if no image is available.
         /// <para>
@@ -99,12 +102,13 @@ namespace VulkanCore.Khr
         /// </param>
         /// <returns>The index of the next available presentable image.</returns>
         /// <exception cref="VulkanException">Vulkan returns an error code.</exception>
-        public int AcquireNextImage(long timeout = ~0, Semaphore semaphore = null, Fence fence = null)
+        public Result AcquireNextImage(out int imageIndex, long timeout = ~0, Semaphore semaphore = null, Fence fence = null)
         {
             int nextImageIndex;
             Result result = vkAcquireNextImageKHR(Parent, this, timeout, semaphore, fence, &nextImageIndex);
-            VulkanException.ThrowForInvalidResult(result);
-            return nextImageIndex;
+            // VulkanException.ThrowForInvalidResult(result);
+            imageIndex = nextImageIndex;
+            return result;
         }
 
         /// <summary>
