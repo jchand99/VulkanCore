@@ -100,8 +100,7 @@ namespace VulkanCore.Khr
         /// <c>null</c> or a fence to signal. <paramref name="semaphore"/> and <paramref
         /// name="fence"/> must not both be equal to <c>null</c>.
         /// </param>
-        /// <returns>The index of the next available presentable image.</returns>
-        /// <exception cref="VulkanException">Vulkan returns an error code.</exception>
+        /// <returns>Result of vkAcquireNextImageKHR</returns>
         public Result AcquireNextImage(out int imageIndex, long timeout = ~0, Semaphore semaphore = null, Fence fence = null)
         {
             int nextImageIndex;
