@@ -16,7 +16,7 @@ namespace VulkanCore.Khr
         /// device as the image's swapchain.
         /// </param>
         /// <param name="presentInfo">The structure specifying the parameters of the presentation.</param>
-        /// <returns> Result from vkQueuePresentKHR <returns>
+        /// <returns> Result from vkQueuePresentKHR </returns>
         public static Result PresentKhr(this Queue queue, PresentInfoKhr presentInfo)
         {
             fixed (long* waitSemaphoresPtr = presentInfo.WaitSemaphores)
