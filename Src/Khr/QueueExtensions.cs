@@ -16,8 +16,8 @@ namespace VulkanCore.Khr
         /// device as the image's swapchain.
         /// </param>
         /// <param name="presentInfo">The structure specifying the parameters of the presentation.</param>
-        /// <exception cref="VulkanException">Vulkan returns an error code.</exception>
-        public static void PresentKhr(this Queue queue, PresentInfoKhr presentInfo)
+        /// <returns> Result from vkQueuePresentKHR <returns>
+        public static Result PresentKhr(this Queue queue, PresentInfoKhr presentInfo)
         {
             fixed (long* waitSemaphoresPtr = presentInfo.WaitSemaphores)
             fixed (long* swapchainsPtr = presentInfo.Swapchains)
@@ -30,7 +30,8 @@ namespace VulkanCore.Khr
                     imageIndicesPtr,
                     resultsPtr);
                 Result result = vkQueuePresentKHR(queue, &nativePresentInfo);
-                VulkanException.ThrowForInvalidResult(result);
+                return result;
+                // VulkanException.ThrowForInvalidResult(result);
             }
         }
 
